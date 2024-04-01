@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 @SpringBootApplication
@@ -54,7 +55,8 @@ public class Tp2SpringApplication /*implements CommandLineRunner*/ {
                 Medecin medecin=medecinRepository.findByNom("DR.Badr");
                 rendezVous.setMedecin(medecin);
                 rendezVous.setPatient(patient);
-
+                rendezVous.setId(UUID.randomUUID().toString());
+                rendezVousRepository.save(rendezVous);
             RendezVous savedRDV = HospitalService.saveRendezVous(rendezVous);
             RendezVous rendezVous1 = rendezVousRepository.findAll().get(0);
             System.out.println(rendezVous1.getId());
